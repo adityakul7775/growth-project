@@ -110,3 +110,17 @@ tr:hover{
 transform: scale(1.01);
 transition: 0.2s;
 }
+table{
+display:block;
+overflow-x:auto;
+}
+
+td input{
+width:70px;
+text-align:center;
+}
+
+tr:hover{
+transform: scale(1.01);
+transition: 0.2s;
+}
