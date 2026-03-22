@@ -101,3 +101,12 @@ height:100%;
 width:0%;
 background:#22c55e;
 }
+table{
+display:block;
+overflow-x:auto;
+}
+
+tr:hover{
+transform: scale(1.01);
+transition: 0.2s;
+}
