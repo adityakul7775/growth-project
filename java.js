@@ -45,8 +45,10 @@ deadline:taskDate
 saveTasks();
 renderTasks();
 
-// 🔥 feedback
-alert("Task added successfully!");
+// ✅ clean success message
+let msg = document.getElementById("emptyMessage");
+msg.innerText = "✅ Task added!";
+setTimeout(()=>{ msg.innerText=""; },2000);
 
 taskName.value="";
 plannedHours.value="";
@@ -61,7 +63,6 @@ let emptyMsg = document.getElementById("emptyMessage");
 
 todayTable.innerHTML="";
 futureTable.innerHTML="";
-emptyMsg.innerText="";
 
 let allTasks=[];
 let todayDate=new Date(today);
@@ -99,13 +100,13 @@ let d=new Date(task.date);
 let diff=Math.ceil((d-todayDate)/86400000);
 let text="Today";
 if(diff>0) text=diff+" days remaining";
-if(diff<0) text="Overdue";
+if(diff<0) text="⚠ Overdue";
 
 // styling
 if(d<todayDate&&!task.done) row.classList.add("overdue-row");
 else if(d>todayDate) row.classList.add("future-row");
 
-// 🔥 improved input logic
+// improved input
 let inputField = `
 <input type="number"
 value="${task.actual || ""}"
