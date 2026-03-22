@@ -45,6 +45,9 @@ deadline:taskDate
 saveTasks();
 renderTasks();
 
+// 🔥 feedback
+alert("Task added successfully!");
+
 taskName.value="";
 plannedHours.value="";
 deadline.value="";
@@ -69,6 +72,7 @@ allTasks.push({...task,date,index});
 });
 });
 
+// sorting
 allTasks.sort((a,b)=>{
 let aD=new Date(a.date), bD=new Date(b.date);
 let aO=aD<todayDate && !a.done;
@@ -97,15 +101,26 @@ let text="Today";
 if(diff>0) text=diff+" days remaining";
 if(diff<0) text="Overdue";
 
+// styling
 if(d<todayDate&&!task.done) row.classList.add("overdue-row");
 else if(d>todayDate) row.classList.add("future-row");
+
+// 🔥 improved input logic
+let inputField = `
+<input type="number"
+value="${task.actual || ""}"
+placeholder="${task.planned ? "" : "Optional"}"
+min="0"
+max="${task.planned || ""}"
+onchange="updateHours('${task.date}',${task.index},this.value)">
+`;
 
 row.innerHTML=`
 <td><input type="checkbox" ${task.done?"checked":""} onchange="toggleTask('${task.date}',${task.index})"></td>
 <td>${d>todayDate?"⭐ ":""}${task.name}</td>
 <td>${task.category}</td>
 <td>${task.planned||"-"}</td>
-<td><input type="number" value="${task.actual}" onchange="updateHours('${task.date}',${task.index},this.value)"></td>
+<td>${inputField}</td>
 <td>${text}</td>
 <td><button onclick="deleteTask('${task.date}',${task.index})">❌</button></td>
 `;
@@ -124,7 +139,6 @@ function toggleTask(date,index){
 
 let task=tasksByDate[date][index];
 
-// ✅ allow if no planned hours
 if(!task.done && task.planned>0 && task.actual===0){
 alert("Enter hours first");
 return;
