@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Growth Project</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h1>Daily Productivity Tracker</h1>
+<h3 id="todayDate"></h3>
+
+<button onclick="goToHistory()">📊 View History</button>
+
+<p id="emptyMessage" style="text-align:center; color:#94a3b8;"></p>
+
+<!-- MAIN PROGRESS -->
+<div class="progress-container">
+<div id="progress-bar"></div>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+
+<div class="card">
+<h3>Total Tasks</h3>
+<p id="totalTasks">0</p>
+</div>
+
+<div class="card">
+<h3>Completed</h3>
+<p id="completedTasks">0</p>
+</div>
+
+<div class="card">
+<h3>Completion</h3>
+<p id="completionPercent">0%</p>
+</div>
+
+<div class="card">
+<h3>Study Hours</h3>
+<p id="hoursText">0/0h</p>
+<div class="hours-bar-container">
+<div id="hours-bar"></div>
+</div>
+</div>
+
+</div>
+
+<!-- ADD TASK -->
+<h2>Add Task</h2>
+
+<div class="form">
+<input id="taskName" placeholder="Task name">
+
+<select id="category">
+<option>Study</option>
+<option>Coding</option>
+<option>Assignment</option>
+<option>Communication</option>
+<option>Projects</option>
+<option>Health</option>
+</select>
+
+<input id="plannedHours" type="number" placeholder="Planned Hours">
+<input id="deadline" type="date">
+
+<button onclick="addTask()">Add Task</button>
+</div>
+
+<!-- TODAY TASKS -->
+<h2>Today's Tasks</h2>
+
+<table>
+<thead>
+<tr>
+<th>Done</th>
+<th>Task</th>
+<th>Category</th>
+<th>Planned</th>
+<th>Actual</th>
+<th>Date</th>
+<th>Delete</th>
+</tr>
+</thead>
+
+<tbody id="todayTable"></tbody>
+</table>
+
+<!-- ASSIGNMENT SECTION -->
+<h2>Assignment / Deadline Tasks</h2>
+
+<!-- ✅ MOVED HERE -->
+<h3>Assignment Progress</h3>
+<div class="progress-container">
+<div id="assignment-progress-bar"></div>
+</div>
+<p id="assignmentPercent">0%</p>
+
+<table>
+<thead>
+<tr>
+<th>Done</th>
+<th>Task</th>
+<th>Category</th>
+<th>Planned</th>
+<th>Actual</th>
+<th>Date</th>
+<th>Delete</th>
+</tr>
+</thead>
+
+<tbody id="futureTable"></tbody>
+</table>
+
+<script src="java.js"></script>
+
+</body>
+</html>

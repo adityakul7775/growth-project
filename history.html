@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>History</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h1>📊 Last 7 Days History</h1>
+
+<canvas id="chart"></canvas>
+
+<button onclick="location.href='index.html'">⬅ Back</button>
+
+<script>
+let data=JSON.parse(localStorage.getItem("tasksByDate"))||{};
+let labels=[],values=[];
+
+for(let i=6;i>=0;i--){
+let d=new Date();
+d.setDate(d.getDate()-i);
+let key=d.toISOString().split("T")[0];
+
+let t=data[key]||[];
+let done=t.filter(x=>x.done).length;
+let p=t.length?Math.round(done/t.length*100):0;
+
+labels.push(key.slice(5));
+values.push(p);
+}
+
+new Chart(chart,{
+type:"bar",
+data:{labels:labels,datasets:[{label:"%",data:values}]}
+});
+</script>
+
+</body>
+</html>
